@@ -1,4 +1,5 @@
 from assessment import Assessment
 
 class Exam(Assessment):
-    pass
+    def display_info(self):
+        print(f"Exam: {self.title} - Max score: {self.max_score}")
