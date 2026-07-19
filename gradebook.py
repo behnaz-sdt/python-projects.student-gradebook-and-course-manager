@@ -110,7 +110,14 @@ class Gradebook:
                     print(f"{title}: {score}")
 
                 average = self.calculate_average(student_id, course_code)
-                print("Average:", average)
+                print("Average:", average, "%")
+
+                letter = self.get_letter_grade(average)
+                print("Letter Grade:", letter)
+
+                comment = self.get_teacher_comment(average)
+                print("Teacher Comment:", comment)
+
                 print("Result:", self.get_result(average))
 
     def search_student(self, keyword):
@@ -142,6 +149,46 @@ class Gradebook:
         del self.students[student_id]
 
         print("Student deleted successfully.")
+
+    def get_letter_grade(self, average):
+
+        if average >= 90:
+            return "A"
+        elif average >= 80:
+            return "B"
+        elif average >= 70:
+            return "C"
+        elif average >= 60:
+            return "D"
+        else:
+            return"F"
+
+    def dashboard(self):
+
+        print("Total students:", len(self.students))
+        print("Total courses:", len(self.courses))
+
+        total_assessments = 0
+
+        for course in self.courses.values():
+            total_assessments += len(course.assessments)
+
+        print("Total assessments:", total_assessments)
+
+    def get_teacher_comment(self, average):
+
+        if average >= 90:
+            return "Excellent work!"
+        elif average >= 80:
+            return "Very good performance."
+        elif average >= 70:
+            return "Good job, keep improving."
+        elif average >= 60:
+            return "Satisfactory result."
+        else:
+            return "Needs more effort."
+
+
 
 
 

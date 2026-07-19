@@ -21,7 +21,7 @@ class Student:
     def enroll_course(self, course_code):
         if course_code not in self.__courses:
             self.__courses.append(course_code)
-            print(f"{course_code}added successfully")
+            print(f"{course_code} added to student's courses")
         else:
             print("student is already enrolled in this course.")
 
