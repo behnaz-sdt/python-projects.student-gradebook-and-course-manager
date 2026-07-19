@@ -28,7 +28,7 @@ class Gradebook:
         else:
             print("Course already exists.")
 
-    def enroll_student (self, student_id, course_code):
+    def enroll_student(self, student_id, course_code):
 
         if student_id in self.students and course_code in self.courses:
             student = self.students[student_id]
@@ -36,6 +36,9 @@ class Gradebook:
 
             student.enroll_course(course_code)
             course.add_student(student_id)
+
+        if student_id not in self.grades:
+            self.grades[student_id] = {}
 
         if course_code not in self.grades[student_id]:
             self.grades[student_id][course_code] = {}
@@ -57,12 +60,21 @@ class Gradebook:
 
             if assessment:
 
-              self.grades[student_id][course_code][assessment_title] = score
+                if score < 0 or score > assessment.max_score:
+                    print("Invalid grade.")
+                    return
 
-              print("Grade recorded successfully.")
+                if student_id not in self.grades:
+                    self.grades[student_id] = []
+
+                    if course_code not in self.grades[student_id]: self.grades[student_id][course_code] = {}
+
+                self.grades[student_id][course_code][assessment_title] = int(score)
+
+                print("Grade recorded successfully.")
 
             else:
-              print("Assessment not found.")
+                print("Assessment not found.")
 
         else:
             print("Student or course not found")
@@ -76,7 +88,7 @@ class Gradebook:
             if len(scores) == 0:
                 return 0
 
-            average = sum(scores)/len(scores)
+            average = sum(scores) / len(scores)
             return average
         else:
             return 0
@@ -110,7 +122,14 @@ class Gradebook:
                     print(f"{title}: {score}")
 
                 average = self.calculate_average(student_id, course_code)
-                print("Average:", average)
+
+                print("Average:", average, "%")
+
+                letter = self.get_letter_grade(average)
+                print("Letter Grade:", letter)
+
+                comment = self.get_teacher_comment(average)
+                print("Teacher Comment:", comment)
                 print("Result:", self.get_result(average))
 
     def search_student(self, keyword):
@@ -118,7 +137,6 @@ class Gradebook:
 
         for student_id, student in self.students.items():
             if keyword.lower() == student_id.lower() or keyword.lower() == student.get_name().lower():
-
                 student.display_info()
                 found = True
 
@@ -143,36 +161,40 @@ class Gradebook:
 
         print("Student deleted successfully.")
 
+    def get_letter_grade(self, average):
 
+        if average >= 90:
+            return "A"
+        elif average >= 80:
+            return "B"
+        elif average >= 70:
+            return "C"
+        elif average >= 60:
+            return "D"
+        else:
+            return "F"
 
+    def dashboard(self):
 
+        print("Total students:", len(self.students))
+        print("Total courses:", len(self.courses))
 
+        total_assessments = 0
 
+        for course in self.courses.values():
+            total_assessments += len(course.assessments)
 
+        print("Total assessments:", total_assessments)
 
+    def get_teacher_comment(self, average):
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        if average >= 90:
+            return "Excellent work!"
+        elif average >= 80:
+            return "Very good performance."
+        elif average >= 70:
+            return "Good job, keep improving."
+        elif average >= 60:
+            return "Satisfactory result."
+        else:
+            return "Needs more effort."
