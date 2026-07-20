@@ -55,6 +55,7 @@ class Gradebook:
 
     def record_grade(self, student_id, course_code, assessment_title, score):
 
+
         if student_id in self.students and course_code in self.courses:
             assessment = self.courses[course_code].find_assessment(assessment_title)
 
@@ -65,9 +66,9 @@ class Gradebook:
                     return
 
                 if student_id not in self.grades:
-                    self.grades[student_id] = []
+                    self.grades[student_id] = {}
 
-                    if course_code not in self.grades[student_id]: self.grades[student_id][course_code] = {}
+                if course_code not in self.grades[student_id]: self.grades[student_id][course_code] = {}
 
                 self.grades[student_id][course_code][assessment_title] = int(score)
 
@@ -140,7 +141,7 @@ class Gradebook:
                 student.display_info()
                 found = True
 
-            if not found:
+        if not found:
                 print("Student not found.")
 
     def delete_student(self, student_id):

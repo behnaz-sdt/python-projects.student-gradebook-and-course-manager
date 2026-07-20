@@ -30,9 +30,9 @@ def menu():
 
         if choice == "1":
 
-            student_id = input("Student ID: ").upper()
-            name = input("Name: ")
-            email = input("Email:")
+            student_id = input("Student ID: ").strip()
+            name = input("Name: ").strip()
+            email = input("Email:").strip()
 
             if student_id == "" or name == "" or email == "":
                 print("All fields are required!")
@@ -52,7 +52,7 @@ def menu():
 
         elif choice == "3":
 
-            keyword = input("Student ID or Name: ")
+            keyword = input("Student ID or Name: ").strip()
 
             if keyword.strip() == "":
                 print("Please enter search value!")
@@ -62,7 +62,7 @@ def menu():
 
         elif choice == "4":
 
-            student_id = input("Student ID: ").upper()
+            student_id = input("Student ID: ").strip()
 
             if student_id.strip() == "":
                 print("Student ID is required!")
@@ -72,8 +72,8 @@ def menu():
 
         elif choice == "5":
 
-            code = input("Course Code: ").upper()
-            name = input("Course Name: ")
+            code = input("Course Code: ").strip()
+            name = input("Course Name: ").strip()
 
             if code.strip() == "" or name.strip() == "":
                 print("All fields are required!")
@@ -85,8 +85,8 @@ def menu():
 
         elif choice == "6":
 
-            student_id = input("Student ID: ")
-            course_code = input("Course Code: ")
+            student_id = input("Student ID: ").strip()
+            course_code = input("Course Code: ").strip()
 
             if student_id.strip() == "" or course_code.strip() == "":
                 print("All fields are required!")
@@ -97,9 +97,9 @@ def menu():
 
         elif choice == "7":
 
-            course_code = input("Course Code: ").upper()
-            title = input("Quiz Title: ")
-            score = input("Max Score: ")
+            course_code = input("Course Code: ").strip()
+            title = input("Quiz Title: ").strip()
+            score = input("Max Score: ").strip()
 
             if course_code.strip() == "" or title.strip() == "":
                 print("All fields are required!")
@@ -114,9 +114,9 @@ def menu():
 
         elif choice == "8":
 
-            course_code = input("Course Code: ").upper()
-            title = input("Exam Title: ")
-            score = input("Max Score: ")
+            course_code = input("Course Code: ").strip()
+            title = input("Exam Title: ").strip()
+            score = input("Max Score: ").strip()
 
             if course_code.strip() == "" or title.strip() == "":
                 print("All fields are required!")
@@ -131,9 +131,9 @@ def menu():
 
         elif choice == "9":
 
-            course_code = input("Course Code: ").upper()
-            title = input("Project Title: ")
-            score = input("Max Score: ")
+            course_code = input("Course Code: ").strip()
+            title = input("Project Title: ").strip()
+            score = input("Max Score: ").strip()
 
             if course_code.strip() == "" or title.strip() == "":
                 print("All fields are required!")
@@ -148,10 +148,10 @@ def menu():
 
         elif choice == "10":
 
-            student_id = input("Student ID: ").upper()
-            course_code = input("Course Code: ")
-            title = input("Assessment Title: ")
-            score = input("Score: ")
+            student_id = input("Student ID: ").strip()
+            course_code = input("Course Code: ").strip()
+            title = input("Assessment Title: ").strip()
+            score = input("Score: ").strip()
 
             if student_id.strip() == "" or course_code.strip() == "" or title.strip() == "":
                 print("All fields are required!")
@@ -169,7 +169,7 @@ def menu():
 
         elif choice == "11":
 
-            student_id = input("Student ID: ").upper()
+            student_id = input("Student ID: ").strip()
 
             gradebook.show_report(student_id)
 

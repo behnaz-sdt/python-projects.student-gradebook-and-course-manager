@@ -18,7 +18,7 @@ class Course:
 
     def find_assessment(self, title):
         for assessment in self.assessments:
-            if assessment.title == title.lower():
+            if assessment.title.lower() == title.lower():
                 return assessment
         return None
 
